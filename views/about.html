@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}个人简历 - imjustfly.net{% endblock %}
+{% block aboutcss %}
+<link rel="stylesheet" href="/static/css/about.css">
+{% endblock %}
+
+{% block content %}
+<div class="myinfo">
+    <div class="left">
+        <h1>贺鹏飞</h1>
+        <h3>2013年应届毕业生</h3>
+        <h3>互联网应用开发</h3>
+        <h3><strong>求职中...</strong></h3>
+        <hr>
+        <a class="email" href="mailto:sdpengfei1018@gmail.com">sdpengfei1018@gmail.com</a>
+        <address>山东省，德州市</address>
+        <p class="school">曲阜师范大学，通信工程专业</p>
+        <hr>
+        <a class="sina" href="http://weibo.com/sdpengfei" target="_blank">我在微博</a>
+        <a class="renren" href="http://renren.com/251758639" target="_blank">我在人人</a>
+        <a class="douban" href="http://www.douban.com/people/hepengfei/" target="_blank">我在豆瓣</a>
+        <a class="git" href="https://github.com/imjustfly" target="_blank">我在GitHub</a>
+    </div>
+    <div class="right">
+        <div class="text">
+            <p><strong>关于我：</strong></p>
+            <p><strong>Hi，欢迎光临我的主页！</strong>我是今年（2013）的一名应届毕业生。90年生人，01年接触计算机，逐渐对此机器入迷，初中时摆弄office办公套件，高中疯狂装系统，追逐各个版本，乐此不疲。乍入大学因兴趣爱好，兼有师兄提携，负责团委网站维护，并于同时自学web开发。从.NET WinForm的拖拽控件开始入门，逐渐深入学习MVC，ORM。在校期间，为学校开发实用管理程序，偶尔接写小型网站，赚些外快。后来有兴趣学些python和Node.js,并喜欢上了python，工作理想便是python应用开发。</p>
+            <hr>
+            <p><strong>专业技能：</strong></p>
+            <ul>
+                <li>具有python及Django开发框架知识和使用经验;</li>
+                <li>熟悉HTML和CSS，熟悉web标准，可以独立使用HTML（DIV+CSS布局）、jQuery、AJAX构建web应用;</li>
+                <li>掌握.NET（C#），理解面向对象编程思想；</li>
+                <li>熟悉ASP.NET MVC开发框架和javascript服务器端编程（Node.js）;</li>
+                <li>有SQL SERVER、MySQL数据库以及NoSQL数据库（MongoDB）使用与管理经验，熟悉SQL结构化查询语言;</li>
+                <li>具有版本控制工具Git、GitHub使用经验;</li>
+                <li>熟悉Linux桌面操作系统（Ubuntu）下的开发环境.</li>
+            </ul>
+            <hr>
+            <p><strong>兼职经验：</strong></p>
+            <p>2010年12月至2012年6月，在团委和学工部下属学团工作网站（www.qfnu.net）负责网站维护和专题网页建设。</p>
+            <hr>
+            <p><strong>项目经验：</strong></p>
+            <p><strong>Wordnet词汇网络词典实现及翻译</strong><br>
+                这是我的毕业设计，已完成。WordNet是由普林斯顿大学基于认知语言学开发的英语词典，它按照单词的意义组成一个“单词的网络”。由于导师从事机器翻译研究，所以分配到这一课题。系统实现了词典功能、词汇语言关系呈现功能以及翻译功能。该系统应用python对普林斯顿提供的纯文本格式数据进行分析并用JSON重新组织并存入MongoDB。系统前后端分离，由Node.js提供数据访问并向客户端提供API，客户端为HTML页面，通过AJAX和后台访问服务器端数据，通信使用JSON。使用python写爬虫对网络词典的详细释义进行了抓取，以方便对WordNet进行中文化。<br>
+                <strong>开发环境：</strong>python、Node.js、MongoDB<br>
+                <strong>项目职责：</strong>该项目为独立开发。
+            </p>
+            <p><strong>个人博客搭建</strong><br>
+                暑假初学Node.js时搭建的个人博客（http://imjustfly.sinaapp.com）。使用Node.js的Express框架构建，采用MongoDB存储数据，使用开源前端框架bootstrap构建UI。实现基本的登录，发表博文，发表评论，及后台的分类管理、评论管理、标签管理。现托管在我的GitHub。目前这个博客已经用python和Django重写并部署在SAE上（就是这个blog）。<br>
+                <strong>开发环境：</strong>python、Django+Node.js、ExpressMongoDB<br>
+                <strong>项目职责：</strong>该项目为独立开发。
+            </p>
+            <p><strong>校园实验室管理系统</strong><br>
+                该系统用于院系实验室进行学生信息管理，具有学生信息采集，刷卡签到，成绩录入，考勤，成绩统计和导出的功能，由于系统使用学生校园卡信息，取代传统的手工签到及成绩统计，提高了效率。系统开发了两个版本，第一版系统使用了WinForm和Access数据库进行构建，使用ADO.NET进行数据访问；第二版采用WPF和MVC的架构构建，而且增加界面的友好度。<br>
+                <strong>开发环境：</strong>Winform、WPF、ADO.NET<br>
+                <strong>项目职责：</strong>该项目为独立开发。
+            </p>
+            <p><strong>济宁市基层组织管理系统</strong><br>
+                该系统为济宁市委组织部使用的内部系统，为学校所接项目。负责整个济宁地区党委基层组织的信息采集、分析以及自定义查询，并能以图形等友好形式呈现。按需求系统实现了基本信息的地图显示和标注以及地图常用功能。系统采用了ASP.NET MVC作为基础架构，使用SQL SERVER作为数据库，数据库访问使用了NHibernate和存储过程，UI开发应用JQuery EazyUI，使用AJAX和JSON和服务器端通信，地图开发使用Flash(Action Script)，通过XML与服务器通信。<br>
+                <strong>开发环境：</strong>ASP.NET MVC、Flex、HTML<br>
+                <strong>项目职责：</strong>统开发和学校计算机学院同学和老师4人进行合作，我负责系统的地图开发、地图信息展示所需API开发和系统Model层开发。
+            </p>
+            <p><strong>毕业生论文管理系统</strong><br>
+                该系统为大学生毕业论文的综合管理系统。实现主要功能有，学生与导师的双向选择及二次分配，论文开题报告、中期检查的在线填写，论文上传，导师在线评分及修改和站内信的功能。系统使用ASP.NET MVC和SQL SERVER构建，数据库访问采用ORM框架Entity Framework，对于使用频繁或复杂的逻辑应用了存储过程，UI使用了JQuery来增强交互。<br>
+                <strong>开发环境：</strong>ASP.NET MVC、Entity Framework、HTML<br>
+                <strong>项目职责：</strong>该系统为独立开发。
+            </p>
+            <p>另外还有基于现有CMS的学院网站开发（主要是前端页面，后台由CMS实现）和学校几个大型学术会议与会人员注册以及信息发布系统。</p>
+            <hr>
+            <p><strong>几张小证：</strong></p>
+            <ul>
+                <li>2010年12月  大学英语  四级 547</li>
+                <li>2011年6月  大学英语  六级 519</li>
+                <li>2011年3月  全国计算机等级考试   网络工程师  四级 合格</li>
+            </ul>
+            <hr>
+            <p>﻿<strong>感谢你能读到这里！</strong><br>关于工作，我喜欢大些正规的公司，但是开放、活力和创造力更重要,反感官僚主义和效率低下。<br>在生活中，我性格偏安静些，喜欢曹方的音乐，喜欢简洁和清新的设计，不喜欢韩剧和日本动画。<br>
+            如果你也是这样的人，希望能成为朋友。</p>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+{% endblock %}

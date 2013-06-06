@@ -1,0 +1,20 @@
+hr{ height: 1px; border: none; border-top: 1px dashed #ddd; }
+.text ul, ol { margin: 5px 0 5px 20px; }
+.text li { line-height: 1.8em; margin: 2px 0; }
+.text p{ margin: 15px 0; line-height: 1.8em; color: #333; }
+.myinfo{ border: solid 6px #F9F9F9; width: 840px; background-color: #FFF; padding: 10px 15px 0 15px; margin: 30px auto 30px auto; box-shadow: 0 1px 10px #666; }
+.left{ position: fixed; float: left; width: 200px; padding: 10px; }
+.left h1{ text-align: center; font-size: 26px; font-weight: 400; line-height: 36px; text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); }
+.left h3{ text-align: center; font-size: 14px; font-weight: 400; line-height: 36px; text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); }
+.left  a { font-size: 11px; color: #4a4a4a; text-decoration: none; display: block; padding: 0 10px 15px 30px; }
+.left a:hover{ color: #285a86; }
+.left .email { background: url(../img/envelope.png) no-repeat 0 2px; }
+.left .sina{ color: #e32529; background: url(../img/sina.png) no-repeat 0 2px; }
+.left .renren{ color: #568af2; background: url(../img/renren.png) no-repeat 0 2px; }
+.left .douban{ color: #007711; background: url(../img/douban.png) no-repeat 0 2px; }
+.left .git{ background: url(../img/github.png) no-repeat 0 2px; }
+.left address { font-size: 11px; color: #4a4a4a; padding: 0 15px 10px 30px; display: block; font-style: normal; line-height: 18px; background: url(../img/house.png) no-repeat 0 2px; }
+.left hr{ margin: 10px 0; }
+.left .school{ line-height: 18px; font-size: 11px; color: #4a4a4a; padding: 0 10px 5px 30px; display: block; background: url(../img/school.png) no-repeat 0 2px; }
+.right { border-left: dashed 1px #ddd; float: right; width: 579px; padding: 10px 10px 10px 30px; }
+.clear{ clear:both; }

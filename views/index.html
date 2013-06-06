@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}imjustfly.net{% endblock %}
+
+{% block content %}
+{% load markup %}
+{% for item in posts %}
+<div class="article">
+    <div class="top">
+                <h1><a href="post/{{item.id}}">{{item.title}}</a></h1>
+            </div>
+            <hr>
+            <div class="article_meta">
+                <span>by</span>
+                Justfly
+                <span>on</span>
+                {{item.post_time|date:"Y-n-d"}}
+                <span>with</span>
+                <a href="post/{{item.id}}#comment">Comments</a>
+            </div>
+            <div class="text">
+                {{item.content|markdown:'codehilite'}}
+            </div>
+            <hr>
+            <div class="article_meta">
+                <span>tagged:</span>
+                {% for tag in item.tags.all %}
+                <a class="tag" href="/tag/{{tag}}">{{tag}}</a>
+                {% if not forloop.last %} , {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+{% endblock %}
+
+{% block pagination %}
+
+<nav id="pagination">
+    {% if have_previor %}
+    <a id="prev" href="?p={{page|add:'-1'}}" class="v_nav">
+        <span class="icon">Prev</span>
+    </a>
+    {%endif%}
+    {% if have_next %}
+    <a id="next" href="?p={{page|add:'1'}}" class="v_nav">
+        <span class="icon">Next</span>
+    </a>
+    {%endif%}
+</nav>
+
+{% endblock %}
