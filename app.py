@@ -1,8 +1,12 @@
 
+#tornado imports
 import tornado.httpserver
 import tornado.ioloop
 
-import routers,config
+#local imports
+import routers
+import config
+
 
 class Application(tornado.web.Application):
     """the application"""
@@ -11,8 +15,8 @@ class Application(tornado.web.Application):
             debug=config.DEBUG
         )
         handlers = routers.route
-        super(Application, self).__init__(handlers=handlers,**settings)
-        
+        super(Application, self).__init__(handlers=handlers, **settings)
+
 httpserver = tornado.httpserver.HTTPServer(Application())
 httpserver.listen(8888)
 
