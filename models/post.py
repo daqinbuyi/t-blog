@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, String
 
 from database import db
 
+
 class Post(db.Model):
     __tablename__ = "posts"
 
@@ -14,8 +15,10 @@ class Post(db.Model):
     def __repr__(self):
         return "<Post:%s>" % self.name
 
+
 def get_posts():
         return db.session.query(Post).all()
+
 
 def save(post):
         db.session.add(post)
