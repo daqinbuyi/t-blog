@@ -9,7 +9,7 @@ import config
 
 
 class Application(tornado.web.Application):
-    """the application"""
+    """the main application"""
     def __init__(self):
         settings = dict(
             debug=config.DEBUG
@@ -18,6 +18,6 @@ class Application(tornado.web.Application):
         super(Application, self).__init__(handlers=handlers, **settings)
 
 httpserver = tornado.httpserver.HTTPServer(Application())
-httpserver.listen(8888)
+httpserver.listen(8888, address="0.0.0.0")
 
 tornado.ioloop.IOLoop.instance().start()

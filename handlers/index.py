@@ -4,5 +4,11 @@ from models import post
 
 class IndexHandler(RequestHandler):
     def get(self):
-        for article in post.get_posts():
-            self.write(article.name)
+        print "hah"
+        posts = post.get_posts()
+        for item in posts:
+            print item.title
+            print item.category.name
+        # for article in posts:
+        #     self.write(article.title)
+        #     self.write(article.tags[0].tag.name)

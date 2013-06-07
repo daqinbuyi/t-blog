@@ -1,29 +1,45 @@
-from sqlalchemy import Column, Integer, String, DateTime
 
+#sqlalchemy imports
+from sqlalchemy import Column, Integer, String, DateTime, Text, ForeignKey
+from sqlalchemy.orm import relationship, joinedload
+
+#local imports
 from database import db
+from models.association import post_tags
 
 
 class Post(db.Model):
     __tablename__ = "posts"
 
     id = Column(Integer, primary_key=True)
-    title = Column(String(30))
-    content = Column(String)
-    post_time = Column(DateTime)
+    category_id = Column(Integer, ForeignKey("categories.id"))
+    title = Column(String(30), nullable=False)
+    content = Column(Text, nullable=False)
+    post_time = Column(DateTime, nullable=False)
 
-    tags = Column()  # many to many
+    #many to many Post<->Tag
+    tags = relationship("Tag", secondary=post_tags)
 
-    def __init__(self, name):
-        self.name = name
+    #many to one Post<->Category
+    category = relationship("Category")
+
+    def __init__(self, title, content, post_time):
+        self.title = title
+        self.content = content
+        self.post_time = post_time
 
     def __repr__(self):
-        return "<Post:%s>" % self.name
+        return "<Post:%s>" % self.title
 
 
 #methods to do with Post
 def get_posts():
-    return db.session.query(Post).all()
+    return db.session.query(Post).options(joinedload(Post.category)).all()
 
 
-def save(post):
+def add(post):
     db.session.add(post)
+
+
+def count():
+    db.session.query(Post).count()
