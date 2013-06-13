@@ -12,7 +12,9 @@ class Application(tornado.web.Application):
     """the main application"""
     def __init__(self):
         settings = dict(
-            debug=config.DEBUG
+            debug=config.DEBUG,
+            template_path="./views",
+            static_path="./static"
         )
         handlers = routers.route
         super(Application, self).__init__(handlers=handlers, **settings)

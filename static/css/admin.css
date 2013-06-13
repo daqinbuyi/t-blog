@@ -45,6 +45,18 @@ dd {
     margin: 0 0 10px 0;
 }
 
+textarea {
+    -moz-box-shadow: 1px 1px 0 #E7E7E7;
+    -moz-box-sizing: border-box;
+    border:1px solid #CCC;
+    height: 250px;
+    margin: 10px auto;
+    outline-color: -moz-use-text-color;
+    outline-style: none;
+    outline-width: medium;
+    padding: 2px;
+}
+
 /* --------------------------
  * Layout Styles
  * --------------------------
@@ -290,10 +302,6 @@ aside {
 }
 
 /* green call to action button class */
-.notice {
-    background-color: #61B842;
-    color: white;
-}
 
 .pure-button {
     font-family: inherit;
@@ -303,6 +311,16 @@ aside {
     color: #ccc;
 }
 
+.pure-form .add-post {
+    color: #666;
+    font-size: 100%;
+    line-height: 1.8em;
+}
+
+.notice {
+    background-color: #61B842;
+    color: white;
+}
 /* --------------------------
  * Responsive Styles
  * --------------------------
@@ -411,6 +429,10 @@ a.pure-button-secondary {
     border: 1px solid #ddd;
 }
 
+.full-size-table {
+    width: 100%;
+}
+
 .size-chart {
     width: 100%;
 }
@@ -491,6 +513,11 @@ a.size-chart-label {
 .marketing-ribbon h3 {
     font-size: 1.47em;
     font-weight: normal;
+}
+
+.centered-div {
+    width:80%;
+    margin:0 auto
 }
 
 .sample-buttons .pure-button {
