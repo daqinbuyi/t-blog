@@ -29,6 +29,10 @@ def get_tags():
     return db.session.query(Tag)
 
 
+def get_tag_by_id(tag_id):
+    return db.session.query(Tag).filter(Tag.id == tag_id).one()
+
+
 def get_tags_by_ids(ids):
     ids = [int(i) for i in ids]
     return db.session.query(Tag).filter(Tag.id.in_(ids)).all()

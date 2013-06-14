@@ -23,7 +23,7 @@ class AddPostHandler(RequestHandler):
 
 class ListPostHandler(RequestHandler):
     def get(self):
-        self.render("post_list.html")
+        self.render("post_list.html", headers=post.get_headers())
 
 
 class ShowPostHandler(RequestHandler):
@@ -31,3 +31,10 @@ class ShowPostHandler(RequestHandler):
         my_post = post.get_post_by_id(int(id))
         my_post.content = markdown(my_post.content)
         self.render("post.html", post=post.get_post_by_id(int(id)))
+
+
+class EditHandler(RequestHandler):
+    def get(self, id):
+        my_post = post.get_post_by_id(int(id))
+        selected_tags = [i.id for i in my_post.tags]
+        self.render("post_edit.html", post=my_post, tags=tag.get_tags(), selected_tags=selected_tags, categories=category.get_categories())

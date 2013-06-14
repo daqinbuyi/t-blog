@@ -6,6 +6,7 @@ from sqlalchemy.orm import relationship, joinedload
 #local imports
 from database import db
 from models.association import post_tags
+from models.category import Category
 
 
 class Post(db.Model):
@@ -35,6 +36,10 @@ class Post(db.Model):
 #methods to do with Post
 def get_posts():
     return db.session.query(Post).options(joinedload(Post.category)).all()
+
+
+def get_headers():
+    return db.session.query(Post.id, Post.title,Category.name, Post.post_time).filter(Category.id == Post.category_id).all()
 
 
 def get_post_by_id(post_id):

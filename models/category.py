@@ -26,3 +26,7 @@ def add(category):
 
 def get_categories():
     return db.session.query(Category).order_by(Category.id)
+
+
+def get_category_by_id(category_id):
+    return db.session.query(Category).filter(Category.id == category_id).one()

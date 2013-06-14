@@ -11,3 +11,8 @@ class IndexHandler(RequestHandler):
         print tag_name
         tag.add(tag.Tag(tag_name))
         self.redirect("/admin/tags")
+
+
+class EditHandler(RequestHandler):
+    def get(self, tag_id):
+        self.render("tag_edit.html", tag=tag.get_tag_by_id(int(tag_id)))

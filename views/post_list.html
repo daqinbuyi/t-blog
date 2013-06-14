@@ -25,23 +25,27 @@
             </tr>
         </thead>
         <tbody>
+            {% if headers %}
+            {% for header in headers %}
             <tr>
                 <td>
-                    1
+                    {{header[0]}}
                 </td>
                 <td>
-                    Honda
+                    {{header[1]}}
                 </td>
                 <td>
-                    Accord
+                    {{header[2]}}
                 </td>
                 <td>
-                    2009
+                    {{header[3].strftime("%b-%d-%y")}}
                 </td>
                 <td>
-                    2009
+                    <a href="/admin/post/edit/{{header[0]}}">edit</a>|delete
                 </td>
             </tr>
+            {% end %}
+            {% end %}
         </tbody>
     </table>
 </div>
