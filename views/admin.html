@@ -1,176 +1,58 @@
-<html>
-    
-    <head>
-        <meta charset="utf-8">
-        <title>
-            Admin - imjustfly.net
-        </title>
-        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.1.0/base-min.css">
-        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.1.0/pure-min.css">
-        <link rel="stylesheet" href="/static/css/admin.css">
-    </head>
-    
-    <body>
-        <div class="pure-g-r " id="layout">
-            <div class="pure-u" id="menu">
-                <div class="pure-menu pure-menu-open">
-                    <a class="pure-menu-heading" href="/">imjustfly</a>
-                    <ul>
-                        <li class=" ">
-                            <a href="/base/">Add Blog</a>
-                        </li>
-                        <li class=" ">
-                            <a href="/grids/">Blog List</a>
-                        </li>
-                        <li class=" ">
-                            <a href="/forms/">Categories</a>
-                        </li>
-                        <li class=" ">
-                            <a href="/buttons/">Tags</a>
-                        </li>
-                        <li class=" menu-item-divided">
-                            <a href="/customize/">Settings</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="pure-u" id="main">
-                <div class="hero">
-                    <h1 class="pure-u-1">
-                        imjustfly.net
-                    </h1>
-                    <h2 class="pure-u-3-4 l-centered">
-                        Write and share your thoughts.Do it now!
-                    </h2>
-                    <div class="hero-cta pure-u-3-4">
-                        <p>
-                            <a class="pure-button pure-button-cta" href="/customize/">Start Writing</a>
-                            <a class="pure-button pure-button-secondary" href="https://github.com/yui/pure/">To Main Page</a>
-                        </p>
-                    </div>
-                </div>
-                <div class="pure-u-1">
-                    <div class="size-chart l-vbox pure-g">
-                        <div class="size-chart-item size-chart-base pure-u" style="width: 21%;">
-                            <a class="size-chart-label" href="/base/">
+{% extends admin_base.html %}
+{% block title %}Admin{% end %}
+{% block main %}
+<div class="hero">
+    <h1 class="pure-u-1">
+        imjustfly.net
+    </h1>
+    <h2 class="pure-u-3-4 l-centered">
+        Write and share your thoughts.Do it now!
+    </h2>
+    <div class="hero-cta pure-u-3-4">
+        <p>
+            <a class="pure-button pure-button-cta" href="/customize/">Start Writing</a>
+            <a class="pure-button pure-button-secondary" href="https://github.com/yui/pure/">To Main Page</a>
+        </p>
+    </div>
+</div>
+<div class="pure-u-1">
+    <div class="size-chart l-vbox pure-g">
+        <div class="size-chart-item size-chart-base pure-u" style="width: 21%;">
+            <a class="size-chart-label" href="/base/">
                                 Base
                                 <span class="size-chart-size">1.2KB</span>
                             </a>
-                        </div>
-                        <div class="size-chart-item size-chart-grids pure-u" style="width: 12%;">
-                            <a class="size-chart-label" href="/grids/">
+        </div>
+        <div class="size-chart-item size-chart-grids pure-u" style="width: 12%;">
+            <a class="size-chart-label" href="/grids/">
                                 Grids
                                 <span class="size-chart-size">0.7KB</span>
                             </a>
-                        </div>
-                        <div class="size-chart-item size-chart-forms pure-u" style="width: 25%;">
-                            <a class="size-chart-label" href="/forms/">
+        </div>
+        <div class="size-chart-item size-chart-forms pure-u" style="width: 25%;">
+            <a class="size-chart-label" href="/forms/">
                                 Forms
                                 <span class="size-chart-size">1.4KB</span>
                             </a>
-                        </div>
-                        <div class="size-chart-item size-chart-buttons pure-u" style="width: 14%;">
-                            <a class="size-chart-label" href="/buttons/">
+        </div>
+        <div class="size-chart-item size-chart-buttons pure-u" style="width: 14%;">
+            <a class="size-chart-label" href="/buttons/">
                                 Buttons
                                 <span class="size-chart-size">0.8KB</span>
                             </a>
-                        </div>
-                        <div class="size-chart-item size-chart-tables pure-u" style="width: 10.5%;">
-                            <a class="size-chart-label" href="/tables/">
+        </div>
+        <div class="size-chart-item size-chart-tables pure-u" style="width: 10.5%;">
+            <a class="size-chart-label" href="/tables/">
                                 Tables
                                 <span class="size-chart-size">0.6KB</span>
                             </a>
-                        </div>
-                        <div class="size-chart-item size-chart-menus pure-u" style="width: 17.5%;">
-                            <a class="size-chart-label" href="/menus/">
+        </div>
+        <div class="size-chart-item size-chart-menus pure-u" style="width: 17.5%;">
+            <a class="size-chart-label" href="/menus/">
                                 Menus
                                 <span class="size-chart-size">1KB</span>
                             </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="marketing-ribbon centered-div">
-                    <form class="pure-form pure-form-stacked">
-                        <fieldset>
-                            <legend>
-                                Add a blog
-                            </legend>
-                            <label for="title">
-                                Title
-                            </label>
-                            <input id="title" class="pure-input-1 add-post" type="input" placeholder="Input your title here">
-                            <label for="content">
-                                Content
-                            </label>
-                            <textarea id="content" class="pure-input-1 add-post" placeholder="Write down here"></textarea>
-                            <label for="category">
-                                Category
-                            </label>
-                            <select id="category" class="pure-input-1 add-post">
-                                <option>
-                                    AL
-                                </option>
-                                <option>
-                                    CA
-                                </option>
-                                <option>
-                                    IL
-                                </option>
-                            </select>
-                            <label for="tags">
-                                Tags
-                            </label>
-                            <input id="tags" class="pure-input-1 add-post" type="input" placeholder="Tags">
-                        </fieldset>
-                        <button type="submit" class="notice pure-button pure-input-1">
-                            Submit
-                        </button>
-                    </form>
-                </div>
-                <div class="marketing-ribbon centered-div">
-                    <table class="full-size-table pure-table pure-table-bordered ">
-                        <thead>
-                            <tr>
-                                <th>
-                                    #
-                                </th>
-                                <th>
-                                    Title
-                                </th>
-                                <th>
-                                    Category
-                                </th>
-                                <th>
-                                    PostTime
-                                </th>
-                                <th>
-                                    Method
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    1
-                                </td>
-                                <td>
-                                    Honda
-                                </td>
-                                <td>
-                                    Accord
-                                </td>
-                                <td>
-                                    2009
-                                </td>
-                                <td>
-                                    2009
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
         </div>
-    </body>
-
-</html>
+    </div>
+</div>
+{% end %}

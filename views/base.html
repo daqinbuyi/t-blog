@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>{% block title %}{% endblock %}</title>
+<title>{% block title %}{% end %}</title>
 <meta name="description" content="Justfly的个人博客">
 <link rel="stylesheet" href="/static/css/main.css">
 <link rel="stylesheet" href="/static/css/code.css">
-{% block aboutcss %}{% endblock %}
+{% block aboutcss %}{% end %}
 </head>
 <body>
 <div id="header">
@@ -33,7 +33,7 @@
         </div>
     </div>
     <div id="main">
-        {% block content %}{% endblock %}
+        {% block content %}{% end %}
     </div>
     <div id="footer">
         <div class="wrap">
@@ -48,6 +48,6 @@
             Powered by Django 
         </div>
     </div>
-    {% block pagination %}{%endblock%}
+    {% block pagination %}{% end %}
 </body>
 </html>

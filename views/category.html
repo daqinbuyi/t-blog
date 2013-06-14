@@ -1,12 +1,12 @@
 {% extends admin_base.html %}
 {% block title %}blog list{% end %}
 {% block main %}
-<h2 class="l-centered">Tags</h2>
+<h2 class="l-centered">Categories</h2>
 <hr>
 <div class="marketing-ribbon centered-div">
     <form class="pure-form" method="post">
         <fieldset>
-            <input id="name" name="name" type="text" placeholder="Input tag name">
+            <input id="name" name="name" type="text" placeholder="Input category name">
 
             <button type="submit" class="pure-button notice">submit</button>
         </fieldset>
@@ -26,20 +26,18 @@
             </tr>
         </thead>
         <tbody>
-            {% if tags %}
-            {% for tag in tags %}
+            {% for category in categories %}
             <tr>
                 <td>
-                    {{tag.id}}
+                    {{category.id}}
                 </td>
                 <td>
-                    {{tag.name}}
+                    {{category.name}}
                 </td>
                 <td>
                     edit | delete
                 </td>
             </tr>
-            {% end %}
             {% end %}
         </tbody>
     </table>

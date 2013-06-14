@@ -1,16 +1,9 @@
 {% extends admin_base.html %}
 {% block title %}blog list{% end %}
 {% block main %}
-<h2 class="l-centered">Tags</h2>
+<h2 class="l-centered">Blog List</h2>
 <hr>
 <div class="marketing-ribbon centered-div">
-    <form class="pure-form" method="post">
-        <fieldset>
-            <input id="name" name="name" type="text" placeholder="Input tag name">
-
-            <button type="submit" class="pure-button notice">submit</button>
-        </fieldset>
-    </form>
     <table class="full-size-table pure-table pure-table-bordered ">
         <thead>
             <tr>
@@ -18,29 +11,37 @@
                     #
                 </th>
                 <th>
-                    Name
+                    Title
                 </th>
                 <th>
-                    
+                    Category
+                </th>
+                <th>
+                    PostTime
+                </th>
+                <th>
+                    Method
                 </th>
             </tr>
         </thead>
         <tbody>
-            {% if tags %}
-            {% for tag in tags %}
             <tr>
                 <td>
-                    {{tag.id}}
+                    1
                 </td>
                 <td>
-                    {{tag.name}}
+                    Honda
                 </td>
                 <td>
-                    edit | delete
+                    Accord
+                </td>
+                <td>
+                    2009
+                </td>
+                <td>
+                    2009
                 </td>
             </tr>
-            {% end %}
-            {% end %}
         </tbody>
     </table>
 </div>

@@ -21,3 +21,8 @@ class Category(db.Model):
 
 def add(category):
     db.session.add(category)
+    db.session.commit()
+
+
+def get_categories():
+    return db.session.query(Category).order_by(Category.id)

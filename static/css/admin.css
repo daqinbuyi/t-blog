@@ -57,6 +57,12 @@ textarea {
     padding: 2px;
 }
 
+hr {
+     height:1px;
+     border:none;
+     border-top:1px dashed #999;
+}
+
 /* --------------------------
  * Layout Styles
  * --------------------------

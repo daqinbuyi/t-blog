@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 
-{% block title %}imjustfly.net{% endblock %}
+{% block title %}imjustfly.net{% end %}
 
 {% block content %}
-{% load markup %}
 {% for item in posts %}
 <div class="article">
     <div class="top">
@@ -14,38 +13,35 @@
                 <span>by</span>
                 Justfly
                 <span>on</span>
-                {{item.post_time|date:"Y-n-d"}}
+                {{item.post_time.strftime('%b-%d-%y %H:%M:%S')}}
                 <span>with</span>
                 <a href="post/{{item.id}}#comment">Comments</a>
             </div>
             <div class="text">
-                {{item.content|markdown:'codehilite'}}
+                {% raw markdown(item.content) %}
             </div>
             <hr>
             <div class="article_meta">
-                <span>tagged:</span>
-                {% for tag in item.tags.all %}
-                <a class="tag" href="/tag/{{tag}}">{{tag}}</a>
-                {% if not forloop.last %} , {% endif %}
-                {% endfor %}
+                <span>Categoried:</span>
+                <a class="tag" href="/category/{{item.category.name}}">{{item.category.name}}</a>
             </div>
         </div>
-        {% endfor %}
-{% endblock %}
+        {% end %}
+{% end %}
 
 {% block pagination %}
 
 <nav id="pagination">
     {% if have_previor %}
-    <a id="prev" href="?p={{page|add:'-1'}}" class="v_nav">
+    <a id="prev" href="?p={{page}}" class="v_nav">
         <span class="icon">Prev</span>
     </a>
-    {%endif%}
+    {%end%}
     {% if have_next %}
-    <a id="next" href="?p={{page|add:'1'}}" class="v_nav">
+    <a id="next" href="?p={{page}}" class="v_nav">
         <span class="icon">Next</span>
     </a>
-    {%endif%}
+    {%end%}
 </nav>
 
-{% endblock %}
+{% end %}

@@ -22,3 +22,13 @@ class Tag(db.Model):
 
 def add(tag):
     db.session.add(tag)
+    db.session.commit()
+
+
+def get_tags():
+    return db.session.query(Tag)
+
+
+def get_tags_by_ids(ids):
+    ids = [int(i) for i in ids]
+    return db.session.query(Tag).filter(Tag.id.in_(ids)).all()

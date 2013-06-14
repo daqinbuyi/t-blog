@@ -23,7 +23,7 @@ class Post(db.Model):
     #many to one Post<->Category
     category = relationship("Category")
 
-    def __init__(self, title, content, post_time):
+    def __init__(self, title=None, content=None, post_time=None):
         self.title = title
         self.content = content
         self.post_time = post_time
@@ -37,8 +37,13 @@ def get_posts():
     return db.session.query(Post).options(joinedload(Post.category)).all()
 
 
+def get_post_by_id(post_id):
+    return db.session.query(Post).filter(Post.id == post_id).one()
+
+
 def add(post):
     db.session.add(post)
+    db.session.commit()
 
 
 def count():

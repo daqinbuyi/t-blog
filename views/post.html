@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 
-{% block title %}{{post.title}} - imjustfly.net{% endblock %}
+{% block title %}{{post.title}} - imjustfly.net{% end %}
 
 {% block content %}
-{% load markup %}
 <div class="article">
     <div class="top">
                 <h1>{{post.title}}</h1>
@@ -13,20 +12,22 @@
                 <span>by</span>
                 Justfly
                 <span>on</span>
-                {{post.post_time|date:"Y-n-d"}}
+                {{post.post_time.strftime('%b-%d-%y %H:%M:%S')}}
                 <span>with</span>
                 <a href="#comment">Comments</a>
             </div>
             <div class="text">
-                {{post.content|markdown:'codehilite'}}
+                {% raw post.content %}
             </div>
             <hr>
             <div class="article_meta">
+                <span>Categoried:</span>
+                <a class="tag" href="/category/{{post.category.name}}">{{post.category.name}}</a>
+                &nbsp;&nbsp;
                 <span>tagged:</span>
-                {% for tag in post.tags.all %}
-                <a class="tag" href="/tag/{{tag}}">{{tag}}</a>
-                {% if not forloop.last %} , {% endif %}
-                {% endfor %}
+                {% for tag in post.tags %}
+                <a class="tag" href="/tag/{{tag.name}}">{{tag.name}}</a>
+                {% end %}
             </div>
         <a name="comment" id="comment"></a>
         <!-- Duoshuo Comment BEGIN -->
@@ -44,4 +45,4 @@ var duoshuoQuery = {short_name:"justflyblog"};
     </script>
 <!-- Duoshuo Comment END -->
         </div>
-{% endblock %}
+{% end %}

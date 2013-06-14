@@ -14,19 +14,19 @@
         <div class="pure-g-r " id="layout">
             <div class="pure-u" id="menu">
                 <div class="pure-menu pure-menu-open">
-                    <a class="pure-menu-heading" href="/">imjustfly</a>
+                    <a class="pure-menu-heading" href="/admin">imjustfly</a>
                     <ul>
                         <li class=" ">
-                            <a href="/base/">Add Blog</a>
+                            <a href="/admin/add_post">Add Blog</a>
                         </li>
                         <li class=" ">
-                            <a href="/grids/">Blog List</a>
+                            <a href="/admin/list_post">Blog List</a>
                         </li>
                         <li class=" ">
-                            <a href="/forms/">Categories</a>
+                            <a href="/admin/categories">Categories</a>
                         </li>
                         <li class=" ">
-                            <a href="/buttons/">Tags</a>
+                            <a href="/admin/tags">Tags</a>
                         </li>
                         <li class=" menu-item-divided">
                             <a href="/customize/">Settings</a>
@@ -36,6 +36,7 @@
             </div>
             <div class="pure-u" id="main">
                 {% block main %}
+                {% end %}
             </div>
         </div>
     </body>
