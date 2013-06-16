@@ -11,6 +11,7 @@ route = [
     (r"/admin/categories", category.IndexHandler),
     (r"/admin/tags", tag.IndexHandler),
     (r"/admin/category/edit/([0-9]+)", category.EditHandler),
+    (r"/admin/category/delete/([0-9]+)", category.DeleteHandler),
     (r"/admin/tag/edit/([0-9]+)", tag.EditHandler),
 
     (r"/about", about.IndexHandler)

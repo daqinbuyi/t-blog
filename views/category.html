@@ -4,13 +4,6 @@
 <h2 class="l-centered">Categories</h2>
 <hr>
 <div class="marketing-ribbon centered-div">
-    <form class="pure-form" method="post">
-        <fieldset>
-            <input id="name" name="name" type="text" placeholder="Input category name">
-
-            <button type="submit" class="pure-button notice">submit</button>
-        </fieldset>
-    </form>
     <table class="full-size-table pure-table pure-table-bordered ">
         <thead>
             <tr>
@@ -35,11 +28,21 @@
                     {{category.name}}
                 </td>
                 <td>
-                    <a href="/admin/category/edit/{{category.id}}">edit</a> | delete
+                    <a href="/admin/category/edit/{{category.id}}">edit</a> | <a href="/admin/category/delete/{{category.id}}">delete</a> 
                 </td>
             </tr>
             {% end %}
         </tbody>
     </table>
+</div>
+<div class="marketing-ribbon centered-div">
+    <h3>添加新分类：</h3>
+    <form class="pure-form" method="post">
+        <fieldset>
+            <input id="name" name="name" type="text" placeholder="Input category name">
+
+            <button type="submit" class="pure-button notice">submit</button>
+        </fieldset>
+    </form>
 </div>
 {% end %}
