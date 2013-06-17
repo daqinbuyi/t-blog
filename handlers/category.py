@@ -12,8 +12,12 @@ class IndexHandler(RequestHandler):
 
 
 class EditHandler(RequestHandler):
-    def get(self, id):
-        self.render("category_edit.html", category=category.get_category_by_id(int(id)))
+    def get(self, category_id):
+        self.render("category_edit.html", category=category.get_category_by_id(int(category_id)))
+
+    def post(self, category_id):
+        category.update(category_id, self.get_argument("name"))
+        self.redirect("/admin/categories")
 
 
 class DeleteHandler(RequestHandler):

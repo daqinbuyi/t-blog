@@ -29,4 +29,13 @@ def get_categories():
 
 
 def get_category_by_id(category_id):
-    return db.session.query(Category).filter(Category.id == category_id).one()
+    return db.session.query(Category).get(category_id)
+
+
+def delete_category_by_id(category_id):
+    db.session.query(Category).filter(Category.id == category_id).delete()
+
+
+def update(category_id, category_name):
+    get_category_by_id(category_id).name = category_name
+    db.session.commit()

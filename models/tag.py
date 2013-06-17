@@ -30,9 +30,14 @@ def get_tags():
 
 
 def get_tag_by_id(tag_id):
-    return db.session.query(Tag).filter(Tag.id == tag_id).one()
+    return db.session.query(Tag).get(tag_id)
 
 
 def get_tags_by_ids(ids):
     ids = [int(i) for i in ids]
     return db.session.query(Tag).filter(Tag.id.in_(ids)).all()
+
+
+def update(tag_id, tag_name):
+    get_tag_by_id(tag_id).name = tag_name
+    db.session.commit()
