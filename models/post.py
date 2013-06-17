@@ -39,11 +39,11 @@ def get_posts():
 
 
 def get_headers():
-    return db.session.query(Post.id, Post.title,Category.name, Post.post_time).filter(Category.id == Post.category_id).all()
+    return db.session.query(Post.id, Post.title, Category.name, Post.post_time).filter(Category.id == Post.category_id).all()
 
 
 def get_post_by_id(post_id):
-    return db.session.query(Post).filter(Post.id == post_id).one()
+    return db.session.query(Post).get(post_id)
 
 
 def add(post):
@@ -53,3 +53,7 @@ def add(post):
 
 def count():
     db.session.query(Post).count()
+
+
+def update():
+    db.session.commit()

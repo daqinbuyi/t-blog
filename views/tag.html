@@ -4,13 +4,6 @@
 <h2 class="l-centered">Tags</h2>
 <hr>
 <div class="marketing-ribbon centered-div">
-    <form class="pure-form" method="post">
-        <fieldset>
-            <input id="name" name="name" type="text" placeholder="Input tag name">
-
-            <button type="submit" class="pure-button notice">submit</button>
-        </fieldset>
-    </form>
     <table class="full-size-table pure-table pure-table-bordered ">
         <thead>
             <tr>
@@ -43,5 +36,15 @@
             {% end %}
         </tbody>
     </table>
+</div>
+<div class="marketing-ribbon centered-div">
+    <h3>Add a new tag</h3>
+    <form class="pure-form" method="post">
+        <fieldset>
+            <input id="name" name="name" type="text" placeholder="Input tag name">
+
+            <button type="submit" class="pure-button notice">submit</button>
+        </fieldset>
+    </form>
 </div>
 {% end %}
