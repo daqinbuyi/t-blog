@@ -42,6 +42,10 @@ def get_headers():
     return db.session.query(Post.id, Post.title, Category.name, Post.post_time).filter(Category.id == Post.category_id).all()
 
 
+def get_header_by_id(post_id):
+    return db.session.query(Post.id, Post.title).filter(Post.id == post_id).one()
+
+
 def get_post_by_id(post_id):
     return db.session.query(Post).get(post_id)
 

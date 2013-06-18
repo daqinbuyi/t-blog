@@ -5,7 +5,7 @@ from datetime import datetime
 from markdown import markdown
 
 
-class AddPostHandler(RequestHandler):
+class AddHandler(RequestHandler):
     def get(self):
         self.render("post_add.html", tags=tag.get_tags(), categories=category.get_categories())
 
@@ -20,12 +20,12 @@ class AddPostHandler(RequestHandler):
         post.add(my_post)
 
 
-class ListPostHandler(RequestHandler):
+class ListHandler(RequestHandler):
     def get(self):
         self.render("post_list.html", headers=post.get_headers())
 
 
-class ShowPostHandler(RequestHandler):
+class ShowHandler(RequestHandler):
     def get(self, id):
         my_post = post.get_post_by_id(int(id))
         my_post.content = markdown(my_post.content)
@@ -51,9 +51,9 @@ class EditHandler(RequestHandler):
 
 
 class DeleteHandler(RequestHandler):
-    def get(self):
-        self.render("post_delete.html")
+    def get(self, post_id):
+        self.render("post_delete.html", post=post.get_header_by_id(int(post_id)))
 
-    def delete(self, post_id):
-        post.delete_by_id(int(post_id))
+    def post(self, post_id):
+        post.delete_post_by_id(int(post_id))
         self.redirect("/admin/posts")

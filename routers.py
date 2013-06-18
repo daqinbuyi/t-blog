@@ -3,11 +3,12 @@ from handlers import index, post, admin, category, tag, about
 #system routes
 route = [
     (r"/", index.IndexHandler),
-    (r"/post/([0-9]+)", post.ShowPostHandler),
+    (r"/post/([0-9]+)", post.ShowHandler),
     (r"/admin", admin.IndexHandler),
-    (r"/admin/add_post", post.AddPostHandler),
-    (r"/admin/posts", post.ListPostHandler),
+    (r"/admin/add_post", post.AddHandler),
+    (r"/admin/posts", post.ListHandler),
     (r"/admin/post/edit/([0-9])+", post.EditHandler),
+    (r"/admin/post/delete/([0-9]+)", post.DeleteHandler),
     (r"/admin/categories", category.IndexHandler),
     (r"/admin/tags", tag.IndexHandler),
     (r"/admin/category/edit/([0-9]+)", category.EditHandler),
