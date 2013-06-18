@@ -47,4 +47,13 @@ class EditHandler(RequestHandler):
         for tag_item in tag.get_tags_by_ids(self.get_arguments("tags")):
             my_post.tags.append(tag_item)
         post.update()
-        self.redirect("/admin/list_post")
+        self.redirect("/admin/posts")
+
+
+class DeleteHandler(RequestHandler):
+    def get(self):
+        self.render("post_delete.html")
+
+    def delete(self, post_id):
+        post.delete_by_id(int(post_id))
+        self.redirect("/admin/posts")

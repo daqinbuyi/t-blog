@@ -57,3 +57,7 @@ def count():
 
 def update():
     db.session.commit()
+
+
+def delete_post_by_id(post_id):
+    db.session.query(Post).filter(Post.id == post_id).delete()

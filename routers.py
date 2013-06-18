@@ -6,7 +6,7 @@ route = [
     (r"/post/([0-9]+)", post.ShowPostHandler),
     (r"/admin", admin.IndexHandler),
     (r"/admin/add_post", post.AddPostHandler),
-    (r"/admin/list_post", post.ListPostHandler),
+    (r"/admin/posts", post.ListPostHandler),
     (r"/admin/post/edit/([0-9])+", post.EditHandler),
     (r"/admin/categories", category.IndexHandler),
     (r"/admin/tags", tag.IndexHandler),
