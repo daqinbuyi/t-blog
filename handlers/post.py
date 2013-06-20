@@ -1,14 +1,17 @@
-from tornado.web import RequestHandler
+from tornado.web import authenticated
+from base import BaseHandler
 from models import post, tag, category
 
 from datetime import datetime
 from markdown import markdown
 
 
-class AddHandler(RequestHandler):
+class AddHandler(BaseHandler):
+    @authenticated
     def get(self):
         self.render("post_add.html", tags=tag.get_tags(), categories=category.get_categories())
 
+    @authenticated
     def post(self):
         my_post = post.Post()
         my_post.title = self.get_argument("title")
@@ -20,24 +23,27 @@ class AddHandler(RequestHandler):
         post.add(my_post)
 
 
-class ListHandler(RequestHandler):
+class ListHandler(BaseHandler):
+    @authenticated
     def get(self):
         self.render("post_list.html", headers=post.get_headers())
 
 
-class ShowHandler(RequestHandler):
+class ShowHandler(BaseHandler):
     def get(self, id):
         my_post = post.get_post_by_id(int(id))
         my_post.content = markdown(my_post.content)
         self.render("post.html", post=post.get_post_by_id(int(id)))
 
 
-class EditHandler(RequestHandler):
+class EditHandler(BaseHandler):
+    @authenticated
     def get(self, id):
         my_post = post.get_post_by_id(int(id))
         selected_tags = [i.id for i in my_post.tags]
         self.render("post_edit.html", post=my_post, tags=tag.get_tags(), selected_tags=selected_tags, categories=category.get_categories())
 
+    @authenticated
     def post(self, post_id):
         my_post = post.get_post_by_id(post_id)
         my_post.title = self.get_argument("title")
@@ -50,10 +56,12 @@ class EditHandler(RequestHandler):
         self.redirect("/admin/posts")
 
 
-class DeleteHandler(RequestHandler):
+class DeleteHandler(BaseHandler):
+    @authenticated
     def get(self, post_id):
         self.render("post_delete.html", post=post.get_header_by_id(int(post_id)))
 
+    @authenticated
     def post(self, post_id):
         post.delete_post_by_id(int(post_id))
         self.redirect("/admin/posts")
