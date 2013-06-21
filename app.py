@@ -15,7 +15,8 @@ class Application(tornado.web.Application):
             debug=config.DEBUG,
             template_path="./views",
             static_path="./static",
-            login_url="/admin/login"
+            login_url="/admin/login",
+            cookie_secret=config.COOKIE_SECRET
         )
         handlers = routers.route
         super(Application, self).__init__(handlers=handlers, **settings)

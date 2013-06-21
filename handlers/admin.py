@@ -12,11 +12,14 @@ class IndexHandler(BaseHandler):
 
 class LoginHandler(BaseHandler):
     def get(self):
-        error_msg = self.get_argument("pass")
+        if self.get_secure_cookie("status"):
+            self.redirect("/admin")
+            return
+        error_msg = self.get_argument("e", None)
         self.render("login.html", error_msg=error_msg)
 
     def post(self):
-        if self.get_argument("pass") == PASSWORD:
+        if self.get_argument("pass", None) == PASSWORD:
             self.set_secure_cookie("status", "Authenticated!")
             self.redirect("/admin")
         else:
