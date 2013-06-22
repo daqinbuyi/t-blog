@@ -17,42 +17,14 @@
 </div>
 <div class="pure-u-1">
   <div class="size-chart l-vbox pure-g">
-    <div class="size-chart-item size-chart-base pure-u" style="width: 21%;">
-      <a class="size-chart-label" href="/base/">
-        Base
-        <span class="size-chart-size">1.2KB</span>
+    {% for i,item in enumerate(category_info) %}
+    <div class="size-chart-item size-chart-{{i}} pure-u" style="width: {{100*item[1]/post_count}}%;">
+      <a class="size-chart-label" href="/admin/posts?category={{item[0]}}">
+        {{ item[0] }}
+        <span class="size-chart-size">{{item[1]}}篇</span>
       </a>
     </div>
-    <div class="size-chart-item size-chart-grids pure-u" style="width: 12%;">
-      <a class="size-chart-label" href="/grids/">
-        Grids
-        <span class="size-chart-size">0.7KB</span>
-      </a>
-    </div>
-    <div class="size-chart-item size-chart-forms pure-u" style="width: 25%;">
-      <a class="size-chart-label" href="/forms/">
-        Forms
-        <span class="size-chart-size">1.4KB</span>
-      </a>
-    </div>
-    <div class="size-chart-item size-chart-buttons pure-u" style="width: 14%;">
-      <a class="size-chart-label" href="/buttons/">
-        Buttons
-        <span class="size-chart-size">0.8KB</span>
-      </a>
-    </div>
-    <div class="size-chart-item size-chart-tables pure-u" style="width: 10.5%;">
-      <a class="size-chart-label" href="/tables/">
-        Tables
-        <span class="size-chart-size">0.6KB</span>
-      </a>
-    </div>
-    <div class="size-chart-item size-chart-menus pure-u" style="width: 17.5%;">
-      <a class="size-chart-label" href="/menus/">
-        Menus
-        <span class="size-chart-size">1KB</span>
-      </a>
-    </div>
+    {% end %}
   </div>
 </div>
 {% end %}

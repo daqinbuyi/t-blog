@@ -449,51 +449,51 @@ a.pure-button-secondary {
     box-sizing: border-box;
 }
 
-.size-chart-base {
+.size-charid-2 {
     background: #0e90d2;
 }
 
-.size-chart-base span {
+.size-chart-2 span {
     color: rgb(103, 194, 240);
 }
 
-.size-chart-grids {
+.size-chart-3 {
     background: rgb(128, 88, 165);
 }
 
-.size-chart-grids span {
+.size-chart-3 span {
     color: rgb(200, 131, 255);
 }
 
-.size-chart-forms {
+.size-chart-5 {
     background: #5eb95e;
 }
 
-.size-chart-forms span {
+.size-chart-5 span {
     color: rgb(161, 240, 137);
 }
 
-.size-chart-buttons {
+.size-chart-4 {
     background: #dd514c;
 }
 
-.size-chart-buttons span {
+.size-chart-4 span {
     color: rgb(236, 164, 154);
 }
 
-.size-chart-menus {
+.size-chart-1 {
     background: rgb(250, 210, 50);
 }
 
-.size-chart-menus span {
+.size-chart-1 span {
     color: rgb(255, 240, 134);
 }
 
-.size-chart-tables {
+.size-chart-0 {
     background: rgb(243, 123, 29);
 }
 
-.size-chart-tables span {
+.size-chart-0 span {
     color: rgb(255, 190, 129);
 }
 

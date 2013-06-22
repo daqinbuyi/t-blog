@@ -21,6 +21,7 @@ class AddHandler(BaseHandler):
             my_post.tags.append(tag_item)
         my_post.post_time = datetime.now()
         post.add(my_post)
+        self.redirect("/admin/posts")
 
 
 class ListHandler(BaseHandler):

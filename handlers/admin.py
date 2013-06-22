@@ -6,8 +6,11 @@ from config import PASSWORD
 class IndexHandler(BaseHandler):
     @authenticated
     def get(self):
-        print self.request
-        self.render("admin.html")
+        category_info = post.get_category_info()
+        post_count = 0
+        for item in category_info:
+            post_count = post_count + item[1]
+        self.render("admin.html", category_info=category_info, post_count=post_count)
 
 
 class LoginHandler(BaseHandler):

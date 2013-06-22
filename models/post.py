@@ -1,6 +1,6 @@
 
 #sqlalchemy imports
-from sqlalchemy import Column, Integer, String, DateTime, Text, ForeignKey
+from sqlalchemy import Column, Integer, String, DateTime, Text, ForeignKey, func
 from sqlalchemy.orm import relationship, joinedload
 
 #local imports
@@ -39,7 +39,8 @@ def get_posts():
 
 
 def get_headers():
-    return db.session.query(Post.id, Post.title, Category.name, Post.post_time).filter(Category.id == Post.category_id).all()
+    return db.session.query(Post.id, Post.title, Category.name, Post.post_time).\
+            filter(Category.id == Post.category_id).all()
 
 
 def get_header_by_id(post_id):
@@ -65,3 +66,9 @@ def update():
 
 def delete_post_by_id(post_id):
     db.session.query(Post).filter(Post.id == post_id).delete()
+
+def get_category_info():
+    return db.session.query(Category.name, func.count(Post.id)).\
+            join(Post.category).\
+            group_by(Post.category_id).\
+            all()
