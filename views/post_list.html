@@ -1,7 +1,7 @@
 {% extends admin_base.html %}
-{% block title %}blog list{% end %}
+{% block title %}blogs{% end %}
 {% block main %}
-<h2 class="l-centered">Blog List</h2>
+<h2 class="l-centered">Blogs</h2>
 <hr>
 <div class="marketing-ribbon centered-div">
     <table class="full-size-table pure-table pure-table-bordered ">
@@ -26,13 +26,13 @@
         </thead>
         <tbody>
             {% if headers %}
-            {% for header in headers %}
+            {% for i,header in enumerate(headers) %}
             <tr>
                 <td>
-                    {{header[0]}}
+                  {{i+1}}
                 </td>
                 <td>
-                    {{header[1]}}
+                  <a href="/admin/post/edit/{{header[0]}}">{{header[1]}}</a>
                 </td>
                 <td>
                     {{header[2]}}

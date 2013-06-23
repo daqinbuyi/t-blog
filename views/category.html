@@ -1,5 +1,5 @@
 {% extends admin_base.html %}
-{% block title %}blog list{% end %}
+{% block title %}categories{% end %}
 {% block main %}
 <h2 class="l-centered">Categories</h2>
 <hr>
@@ -18,13 +18,13 @@
             </tr>
         </thead>
         <tbody>
-            {% for category in categories %}
+            {% for i,category in enumerate(categories) %}
             <tr>
                 <td>
-                    {{category.id}}
+                    {{i+1}}
                 </td>
                 <td>
-                    {{category.name}}
+                    <a href="/admin/category/edit/{{category.id}}">{{category.name}}</a>
                 </td>
                 <td>
                     <a href="/admin/category/edit/{{category.id}}">edit</a> | <a href="/admin/category/delete/{{category.id}}">delete</a> 
@@ -35,7 +35,7 @@
     </table>
 </div>
 <div class="marketing-ribbon centered-div">
-    <h3>添加新分类：</h3>
+    <h3>Add a new category:</h3>
     <form class="pure-form" method="post">
         <fieldset>
             <input id="name" name="name" type="text" placeholder="Input category name">

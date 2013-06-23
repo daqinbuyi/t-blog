@@ -1,5 +1,5 @@
 {% extends admin_base.html %}
-{% block title %}blog list{% end %}
+{% block title %}tags{% end %}
 {% block main %}
 <h2 class="l-centered">Tags</h2>
 <hr>
@@ -19,13 +19,13 @@
         </thead>
         <tbody>
             {% if tags %}
-            {% for tag in tags %}
+            {% for i,tag in enumerate(tags) %}
             <tr>
                 <td>
-                    {{tag.id}}
+                    {{i+1}}
                 </td>
                 <td>
-                    {{tag.name}}
+                    <a href="/admin/tag/edit/{{tag.id}}">{{tag.name}}</a>
                 </td>
                 <td>
                     <a href="/admin/tag/edit/{{tag.id}}">edit</a> | delete
@@ -37,7 +37,7 @@
     </table>
 </div>
 <div class="marketing-ribbon centered-div">
-    <h3>Add a new tag</h3>
+    <h3>Add a new tag:</h3>
     <form class="pure-form" method="post">
         <fieldset>
             <input id="name" name="name" type="text" placeholder="Input tag name">

@@ -27,7 +27,10 @@ class AddHandler(BaseHandler):
 class ListHandler(BaseHandler):
     @authenticated
     def get(self):
-        self.render("post_list.html", headers=post.get_headers())
+        category_id = self.get_argument("cate", None)
+        if category_id:
+            category_id = int(category_id)
+        self.render("post_list.html", headers=post.get_headers(category_id))
 
 
 class ShowHandler(BaseHandler):

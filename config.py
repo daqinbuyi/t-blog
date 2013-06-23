@@ -1,6 +1,7 @@
 
 #site settings
 PASSWORD = "pengfei1018"
+PAGE_SIZE = 5
 
 #system settings
 DEBUG = True

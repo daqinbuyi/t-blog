@@ -1,13 +1,13 @@
 
 #sqlalchemy imports
 from sqlalchemy import Column, Integer, String, DateTime, Text, ForeignKey, func
-from sqlalchemy.orm import relationship, joinedload
+from sqlalchemy.orm import relationship
 
 #local imports
 from database import db
 from models.association import post_tags
 from models.category import Category
-
+import config
 
 class Post(db.Model):
     __tablename__ = "posts"
@@ -33,14 +33,26 @@ class Post(db.Model):
         return "<Post:%s>" % self.title
 
 
-#methods to do with Post
-def get_posts():
-    return db.session.query(Post).options(joinedload(Post.category)).all()
+def count_posts(category_name = None):
+    my_query = db.session.query(Post).join(Post.category)
+    if category_name:
+        my_query = my_query.filter(Category.name == category_name)
+    return my_query.count()
 
 
-def get_headers():
-    return db.session.query(Post.id, Post.title, Category.name, Post.post_time).\
-            filter(Category.id == Post.category_id).all()
+def get_posts(category_name=None, page = 1):
+    my_query = db.session.query(Post).join(Post.category)
+    if category_name:
+        my_query = my_query.filter(Category.name == category_name)
+    return my_query.order_by(Post.id.desc())[(page-1)*config.PAGE_SIZE : page*config.PAGE_SIZE]
+
+
+def get_headers(category_id=None):
+    my_query = db.session.query(Post.id, Post.title, Category.name, Post.post_time).\
+            join(Post.category)
+    if category_id:
+        my_query = my_query.filter(Post.category_id == category_id)
+    return my_query.order_by(Post.id.desc()).all()
 
 
 def get_header_by_id(post_id):
