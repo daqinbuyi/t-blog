@@ -3,6 +3,8 @@ from sqlalchemy.orm import relationship
 
 from database import db
 
+session = None
+
 
 class Category(db.Model):
     __tablename__ = "categories"
@@ -20,22 +22,22 @@ class Category(db.Model):
 
 
 def add(category):
-    db.session.add(category)
-    db.session.commit()
+    session.add(category)
+    session.commit()
 
 
 def get_categories():
-    return db.session.query(Category).order_by(Category.id)
+    return session.query(Category).order_by(Category.id)
 
 
 def get_category_by_id(category_id):
-    return db.session.query(Category).get(category_id)
+    return session.query(Category).get(category_id)
 
 
 def delete_category_by_id(category_id):
-    db.session.query(Category).filter(Category.id == category_id).delete()
+    session.query(Category).filter(Category.id == category_id).delete()
 
 
 def update(category_id, category_name):
     get_category_by_id(category_id).name = category_name
-    db.session.commit()
+    session.commit()

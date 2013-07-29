@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>{% block title %}{% end block %} | {{site_options["site_name"]}}</title>
+    {% if site_options["author"] %}
+    <meta name="author" content="{{site_options["author"]}}">
+    {% end %}
+    <meta name="description" content="{% block description %}{% end %}">
+    <meta name="keywords" content="{% block keywords %}{% end %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta property="og:title" content="{% block title %}{% end block %} | {{site_options["site_name"]}}" />
+    <meta property="og:site_name" content="{{site_options["site_name"]}}" />
+    <!-- <link rel="alternate" href=" " title="" type="application/atom+xml"> -->
+    <link rel="stylesheet" href="/static/css/style.css" media="screen" type="text/css">
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+    {% module GoogleAnalytics() %}
+</head>
+
+
+<body>
+  <div class="wrapper">
+    <header id="header">
+      <div class="title">
+        <h1><a href="/">{{site_options["site_name"]}}</a></h1>
+        {% if site_options["subtitle"] %}
+        <p><a href="/">{{site_options["subtitle"]}}</a></p>
+        {% end %}
+      </div>
+      <nav class="nav">
+        <ul>
+          {% for nav in site_options["navs"]%}
+          <li><a href="{{nav["link"]}}">{{nav["name"]}}</a></li> 
+          {% end %}
+        </ul>
+        <div class="clearfix"></div>
+      </nav>
+      <div class="clearfix"></div>
+    </header>
+    <div class="content">
+      {% block content %}{% end %}
+    </div>
+  </div>
+
+  <div class="widget-wrapper">
+    <aside id="sidebar">
+      {% module TagCloud() %}
+      {% module BlogRoll() %}
+      {% module RecentPosts() %}
+      </div>
+    </aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer">
+    {%if site_options["copyright"]%}
+    <div class="copyright">&copy; <a href="/">{{site_options["copyright"]}}<a></div>
+    {%end%}
+    <div class="theme-copyright">
+      Theme by <a href="https://github.com/orderedlist" target="_blank">orderedlist</a>
+            | Redesign by <a href="http://heroicyang.com/" target="_blank">Heroic Yang</a>
+    </div>
+    <div class="clearfix"></div>
+  </footer>
+  <script src="js/scale.fix.js"></script>
+  <script src="js/jquery.imagesloaded.min.js"></script>
+  <script src="js/gallery.js"></script>
+  <script type="text/javascript">
+  var duoshuoQuery = {
+      short_name: '<%= theme.duoshuo_shortname %>'
+  };
+  (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';
+      ds.async = true;
+      ds.src = 'http://static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+</body>
+</html>

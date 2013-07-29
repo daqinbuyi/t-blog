@@ -4,6 +4,8 @@ from sqlalchemy.orm import relationship
 from database import db
 from models.association import post_tags
 
+session = None
+
 
 class Tag(db.Model):
     __tablename__ = "tags"
@@ -21,23 +23,23 @@ class Tag(db.Model):
 
 
 def add(tag):
-    db.session.add(tag)
-    db.session.commit()
+    session.add(tag)
+    session.commit()
 
 
 def get_tags():
-    return db.session.query(Tag)
+    return session.query(Tag)
 
 
 def get_tag_by_id(tag_id):
-    return db.session.query(Tag).get(tag_id)
+    return session.query(Tag).get(tag_id)
 
 
 def get_tags_by_ids(ids):
     ids = [int(i) for i in ids]
-    return db.session.query(Tag).filter(Tag.id.in_(ids)).all()
+    return session.query(Tag).filter(Tag.id.in_(ids)).all()
 
 
 def update(tag_id, tag_name):
     get_tag_by_id(tag_id).name = tag_name
-    db.session.commit()
+    session.commit()

@@ -8,15 +8,18 @@ import config
 
 class DataBase:
 
-    def __init__(self):
+    def __init__(self, engine_url, **kwargs):
         self.engine = create_engine(
-            config.DATABASE_URI, echo=config.DATABASE_ECHO)
+            engine_url, **kwargs)
         self.Model = declarative_base()
-        Session = sessionmaker(bind=self.engine)
-        self.session = Session()
+        self.Session = sessionmaker(bind=self.engine)
 
     def create_tables(self):
         """create tables in database"""
         self.Model.metadata.create_all(self.engine)
 
-db = DataBase()
+db = DataBase(
+    config.DATABASE_URI,
+    echo=config.DATABASE_ECHO,
+    pool_recycle=5
+)

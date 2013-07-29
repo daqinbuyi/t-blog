@@ -33,12 +33,12 @@
 
 <nav id="pagination">
     {% if have_previor %}
-    <a id="prev" href="?p={{page}}" class="v_nav">
+    <a id="prev" href="?p={{page-1}}" class="v_nav">
         <span class="icon">Prev</span>
     </a>
     {%end%}
     {% if have_next %}
-    <a id="next" href="?p={{page}}" class="v_nav">
+    <a id="next" href="?p={{page+1}}" class="v_nav">
         <span class="icon">Next</span>
     </a>
     {%end%}

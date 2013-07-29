@@ -1,22 +1,20 @@
-from tornado.web import RequestHandler
-from models import post
+from base import BaseHandler
 
 from markdown import markdown
-import config
 
 
-class IndexHandler(RequestHandler):
+class IndexHandler(BaseHandler):
     def get(self):
-        category_name = self.get_argument("cate", None)
+        category = self.get_argument("cate", None)
+        tag = self.get_argument("tag", None)
         page = int(self.get_argument("p", 1))
-        have_previor = have_next = None
-        if page > 1:
-            have_previor = page - 1
-        if page * config.PAGE_SIZE < post.count_posts(category_name):
-            have_next = page + 1
+        total = self.postservice.count_posts(category)
         self.render(
             "index.html",
-            posts=post.get_posts(category_name, page),
+            category=category,
+            tag=tag,
+            articles=self.postservice.get_posts(category, page),
             markdown=markdown,
-            have_previor=have_previor,
-            have_next=have_next)
+            total=total,
+            current_page=page
+        )
