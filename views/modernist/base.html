@@ -15,6 +15,7 @@
     <meta property="og:site_name" content="{{site_options["site_name"]}}" />
     <!-- <link rel="alternate" href=" " title="" type="application/atom+xml"> -->
     <link rel="stylesheet" href="/static/css/style.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="/static/css/about.css" media="screen" type="text/css">
     <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
     <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
@@ -48,9 +49,9 @@
 
   <div class="widget-wrapper">
     <aside id="sidebar">
-      {% module TagCloud() %}
-      {% module BlogRoll() %}
-      {% module RecentPosts() %}
+      {% module TagCloud(tags) %}
+      {% module BlogRoll(links) %}
+      {% module RecentPosts(recent_posts) %}
       </div>
     </aside>
     <div class="clearfix"></div>
@@ -65,9 +66,9 @@
     </div>
     <div class="clearfix"></div>
   </footer>
-  <script src="js/scale.fix.js"></script>
-  <script src="js/jquery.imagesloaded.min.js"></script>
-  <script src="js/gallery.js"></script>
+  <script src="/static/js/scale.fix.js"></script>
+  <script src="/static/js/jquery.imagesloaded.min.js"></script>
+  <script src="/static/js/gallery.js"></script>
   <script type="text/javascript">
   var duoshuoQuery = {
       short_name: '<%= theme.duoshuo_shortname %>'

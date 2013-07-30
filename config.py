@@ -9,8 +9,13 @@ site_options = dict(
     description="我的个人技术博客，关注python和go语言！",
     keywords=["python", "go"],
     password="pengfei1018",
-    page_size=5,
-    navs=[dict(name="首页", link="/"), dict(name="首页", link="/")],
+    index_page_size=5,
+    archive_page_size=20,
+    navs=[
+        dict(name="Home", link="/"),
+        dict(name="Archive", link="/archive"),
+        dict(name="About", link="/about"),
+    ],
     copyright="Justfly He"
 )
 

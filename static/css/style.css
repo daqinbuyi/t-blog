@@ -3,16 +3,16 @@
   font-family: 'FontAwesome';
   font-style: normal;
   font-weight: normal;
-  src: url("fonts/fontawesome-webfont.eot?#iefix") format('embedded-opentype'), url("fonts/fontawesome-webfont.woff") format('woff'), url("fonts/fontawesome-webfont.ttf") format('truetype'), url("fonts/fontawesome-webfont.svg#FontAwesomeRegular") format('svg');
+  src: url("fonts/fontawesome-webfont.eot?#iefix") format('embedded-opentype'), url("/static/fonts/fontawesome-webfont.woff") format('woff'), url("/static/fonts/fontawesome-webfont.ttf") format('truetype'), url("fonts/fontawesome-webfont.svg#FontAwesomeRegular") format('svg');
 }
 html {
   background: #6c7989;
-  /*background: #6c7989 -webkit-gradient(linear, left top, left bottom, color-stop(0, #6c7989), color-stop(1, #434b55)) fixed;
+  background: #6c7989 -webkit-gradient(linear, left top, left bottom, color-stop(0, #6c7989), color-stop(1, #434b55)) fixed;
   background: #6c7989 -webkit-linear-gradient(top, #6c7989 0%, #434b55 100%) fixed;
   background: #6c7989 -moz-linear-gradient(top, #6c7989 0%, #434b55 100%) fixed;
   background: #6c7989 -o-linear-gradient(top, #6c7989 0%, #434b55 100%) fixed;
   background: #6c7989 -ms-linear-gradient(top, #6c7989 0%, #434b55 100%) fixed;
-  background: #6c7989 linear-gradient(top, #6c7989 0%, #434b55 100%) fixed;*/
+  background: #6c7989 linear-gradient(top, #6c7989 0%, #434b55 100%) fixed;
 }
 body {
   padding: 50px 0;
@@ -20,7 +20,7 @@ body {
   font: 14px/1.5 "Droid Serif", Helvetica Neue, Helvetica, Arial, sans-serif;
   color: #555;
   font-weight: 300;
-  background: url("images/checker.png") fixed;
+  background: url("/static/images/checker.png") fixed;
 }
 .wrapper {
   width: 680px;
@@ -525,6 +525,7 @@ article footer .tags:before {
   text-shadow: rgba(255,255,255,0.9) 0 1px 0;
   padding: 0 30px;
   margin: 0 0 10px 0;
+  text-align: right;
 }
 @media screen and (max-width:580px) {
   .archive-year {

@@ -1,7 +1,5 @@
 from base import BaseHandler
 
-from markdown import markdown
-
 
 class IndexHandler(BaseHandler):
     def get(self):
@@ -14,7 +12,18 @@ class IndexHandler(BaseHandler):
             category=category,
             tag=tag,
             articles=self.postservice.get_posts(category, page),
-            markdown=markdown,
             total=total,
             current_page=page
+        )
+
+
+class ArchiveHandler(BaseHandler):
+    def get(self):
+        page = int(self.get_argument("p", 1))
+        total = self.postservice.count_posts()
+        self.render(
+            "archive.html",
+            articles=self.postservice.get_headers(),
+            current_page=page,
+            total=total
         )

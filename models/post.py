@@ -1,7 +1,8 @@
 
 #sqlalchemy imports
-from sqlalchemy import Column, Integer, String, DateTime, Text, ForeignKey, func
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, func
 from sqlalchemy.orm import relationship
+from sqlalchemy.types import TypeDecorator, Text
 
 #local imports
 from database import db
@@ -9,7 +10,23 @@ from models.association import post_tags
 from models.category import Category
 from config import site_options
 
+from markdown import markdown
 session = None
+
+
+class MarkdownText(TypeDecorator):
+    impl = Text
+
+    def process_bind_param(self, value, dialect):
+        if value is not None and isinstance(value, str):
+            return value
+        return None
+
+    def process_result_value(self, value, dialect):
+        if value is None:
+            return value
+        else:
+            return markdown(value)
 
 
 class Post(db.Model):
@@ -18,7 +35,7 @@ class Post(db.Model):
     id = Column(Integer, primary_key=True)
     category_id = Column(Integer, ForeignKey("categories.id"))
     title = Column(String(30), nullable=False)
-    content = Column(Text, nullable=False)
+    content = Column(MarkdownText, nullable=False)
     post_time = Column(DateTime, nullable=False)
 
     #many to many Post<->Tag
@@ -47,7 +64,8 @@ def get_posts(category_name=None, page=1):
     my_query = session.query(Post).join(Post.category)
     if category_name:
         my_query = my_query.filter(Category.name == category_name)
-    result = my_query.order_by(Post.id.desc())[(page-1)*site_options["page_size"]:page*site_options["page_size"]]
+    result = my_query.\
+        order_by(Post.id.desc())[(page-1)*site_options["index_page_size"]:page*site_options["index_page_size"]]
     return result
 
 

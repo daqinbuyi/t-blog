@@ -2,13 +2,13 @@
     <header>
         <div class="icon"></div>
         <time datetime="{{article.post_time.strftime('%b-%d-%y %H:%M:%S')}}">
-          <a href="#">{{article.post_time.strftime('%b-%d-%y')}}</a>
+          <a href="#">{{article.post_time.strftime('%b-%d-%Y')}}</a>
         </time>
         <h1 class="title"><a href="#">{{article.title}}</a>
         </h1>
     </header>
     <div class="entry">
-        {% raw markdown(article.content) %}
+        {% raw article.content %}
     </div>
     <footer class="end-sep">
       {% if show_all %}

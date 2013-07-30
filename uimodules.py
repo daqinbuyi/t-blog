@@ -15,10 +15,10 @@ class Pagination(tornado.web.UIModule):
     def render(self, total, current_page, is_archive=False):
         prev = current_page - 1
         if is_archive:
-            page_size = site_options.archive_page_size
+            page_size = site_options["archive_page_size"]
         else:
-            page_size = site_options.index_page_size
-        next = current_page + 1 if page_size * current_page >= total else False
+            page_size = site_options["index_page_size"]
+        next = current_page + 1 if page_size * current_page < total else False
         return self.render_string("module/pagination.html", prev=prev, next=next)
 
 
@@ -38,7 +38,7 @@ class BlogRoll(tornado.web.UIModule):
         )
 
 
-class RencentPosts(tornado.web.UIModule):
+class RecentPosts(tornado.web.UIModule):
     def render(self, recent_posts):
         return self.render_string(
             "module/recent_posts.html",

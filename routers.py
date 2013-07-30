@@ -3,6 +3,7 @@ from handlers import index, post, admin, category, tag, about
 #system routes
 route = [
     (r"/", index.IndexHandler),
+    (r"/archive", index.ArchiveHandler),
     (r"/post/([0-9]+)", post.ShowHandler),
     (r"/admin", admin.IndexHandler),
     (r"/admin/login", admin.LoginHandler),
