@@ -1,5 +1,5 @@
 from tornado.web import authenticated, RequestHandler
-from base import BaseHandler
+from . import BaseHandler
 from config import site_options
 
 

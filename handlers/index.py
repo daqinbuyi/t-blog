@@ -1,4 +1,5 @@
-from base import BaseHandler
+from . import BaseHandler
+from handlermixin import PostMixin
 
 
 class IndexHandler(BaseHandler):
@@ -6,12 +7,12 @@ class IndexHandler(BaseHandler):
         category = self.get_argument("cate", None)
         tag = self.get_argument("tag", None)
         page = int(self.get_argument("p", 1))
-        total = self.postservice.count_posts(category)
+        total = self.count_posts(category)
         self.render(
             "index.html",
             category=category,
             tag=tag,
-            articles=self.postservice.get_posts(category, page),
+            articles=self.get_posts(category, page),
             total=total,
             current_page=page
         )
@@ -20,10 +21,10 @@ class IndexHandler(BaseHandler):
 class ArchiveHandler(BaseHandler):
     def get(self):
         page = int(self.get_argument("p", 1))
-        total = self.postservice.count_posts()
+        total = self.count_posts()
         self.render(
             "archive.html",
-            articles=self.postservice.get_headers(),
+            articles=self.get_headers(),
             current_page=page,
             total=total
         )

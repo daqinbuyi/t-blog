@@ -10,7 +10,7 @@ import os
 
 settings = dict(
     debug=config.DEBUG,
-    template_path=os.path.join(os.path.dirname(__file__), "views/modernist"),
+    template_path=os.path.join(os.path.dirname(__file__), "themes/modernist"),
     static_path=os.path.join(os.path.dirname(__file__), "static"),
     login_url="/admin/login",
     cookie_secret=config.COOKIE_SECRET,
