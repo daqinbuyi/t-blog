@@ -1,11 +1,10 @@
 import tornado.web
 from database import db
 from config import site_options
-from model import Post, Category, Tag
-from sqlalchemy import func
+from mixin import BaseMixin
 
 
-class BaseHandler(tornado.web.RequestHandler):
+class BaseHandler(tornado.web.RequestHandler, BaseMixin):
     def initialize(self):
         self.db = db.Session()
 
@@ -26,25 +25,7 @@ class BaseHandler(tornado.web.RequestHandler):
     def on_finish(self):
         self.db.close()
 
-    def count_posts(self, category_name=None):
-        my_query = self.db.query(Post).join(Post.category)
-        if category_name:
-            my_query = my_query.filter(Category.name == category_name)
-        return my_query.count()
-
-    def get_posts(self, category_name=None, page=1):
-        my_query = self.db.query(Post).join(Post.category)
-        if category_name:
-            my_query = my_query.filter(Category.name == category_name)
-        result = my_query.\
-            order_by(Post.id.desc())[(page-1)*site_options["index_page_size"]:page*site_options["index_page_size"]]
-        return result
-
-    def get_recent_posts(self):
-        return self.db.query(Post.id, Post.title).order_by(Post.post_time.desc())[:5]
-
-    def get_headers(self, category_id=None):
-        my_query = self.db.query(Post.id, Post.title, Category.name, Post.post_time).join(Post.category)
-        if category_id:
-            my_query = my_query.filter(Post.category_id == category_id)
-        return my_query.order_by(Post.id.desc()).all()
+    def _get_limit_offset(self, page):
+        offset = (page - 1) * site_options["index_page_size"]
+        limit = site_options["index_page_size"]
+        return limit, offset
