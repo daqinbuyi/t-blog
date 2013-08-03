@@ -16,7 +16,9 @@ site_options = dict(
         dict(name="Archive", link="/archive"),
         dict(name="About", link="/about"),
     ],
-    copyright="Justfly He"
+    copyright="Justfly He",
+    duoshuo_shortname="justflyBlog",
+    theme="modernist"
 )
 
 #system settings

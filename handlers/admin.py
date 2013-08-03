@@ -6,11 +6,14 @@ from config import site_options
 class IndexHandler(BaseHandler):
     @authenticated
     def get(self):
-        category_info = self.postservice.get_category_info()
+        category_info = self.get_category_info()
         post_count = 0
         for item in category_info:
             post_count = post_count + item[1]
-        self.render("admin.html", category_info=category_info, post_count=post_count)
+        self.render(
+            "admin.html",
+            category_info=category_info,
+            post_count=post_count)
 
 
 class LoginHandler(RequestHandler):

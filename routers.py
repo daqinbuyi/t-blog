@@ -4,7 +4,7 @@ from handlers import index, post, admin, category, tag, about
 route = [
     (r"/", index.IndexHandler),
     (r"/archive", index.ArchiveHandler),
-    (r"/post/([0-9]+)", post.ShowHandler),
+    (r"/post/([^/]+)", post.ShowHandler),
     (r"/admin", admin.IndexHandler),
     (r"/admin/login", admin.LoginHandler),
     (r"/admin/logout", admin.LogoutHandler),

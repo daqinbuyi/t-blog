@@ -1,8 +1,15 @@
 import tornado.web
 from config import site_options
 
+class BaseModule(tornado.web.UIModule):
+    def render(self):
+        raise Exception("Not implement!")
 
-class Article(tornado.web.UIModule):
+    def render_string(self, template_name, **kwargs):
+        template_name = site_options["theme"] + '/' + template_name
+        return super(BaseModule, self).render_string(template_name, **kwargs)
+
+class Article(BaseModule):
     def render(self, article, show_all=False):
         return self.render_string(
             "module/article.html",
@@ -11,7 +18,7 @@ class Article(tornado.web.UIModule):
         )
 
 
-class Pagination(tornado.web.UIModule):
+class Pagination(BaseModule):
     def render(self, total, current_page, is_archive=False):
         prev = current_page - 1
         if is_archive:
@@ -22,7 +29,7 @@ class Pagination(tornado.web.UIModule):
         return self.render_string("module/pagination.html", prev=prev, next=next)
 
 
-class TagCloud(tornado.web.UIModule):
+class TagCloud(BaseModule):
     def render(self, tags):
         return self.render_string(
             "module/tag_cloud.html",
@@ -30,7 +37,7 @@ class TagCloud(tornado.web.UIModule):
         )
 
 
-class BlogRoll(tornado.web.UIModule):
+class BlogRoll(BaseModule):
     def render(self, links):
         return self.render_string(
             "module/blog_roll.html",
@@ -38,7 +45,7 @@ class BlogRoll(tornado.web.UIModule):
         )
 
 
-class RecentPosts(tornado.web.UIModule):
+class RecentPosts(BaseModule):
     def render(self, recent_posts):
         return self.render_string(
             "module/recent_posts.html",
@@ -46,7 +53,7 @@ class RecentPosts(tornado.web.UIModule):
         )
 
 
-class GoogleAnalytics(tornado.web.UIModule):
+class GoogleAnalytics(BaseModule):
     def render(self):
         return self.render_string(
             "module/google_analytics.html",

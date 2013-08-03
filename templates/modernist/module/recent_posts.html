@@ -2,7 +2,7 @@
     <h3 class="title">Recent Posts</h3>
     <ul class="entry">
         {% for post in recent_posts %}
-        <li><a href="#">post.title</a><li>
+        <li><a href="/post/{{post.en_title}}">{{post.title}}</a><li>
         {% end %}
     </ul>
 </div>

@@ -35,7 +35,8 @@ class Post(db.Model):
 
     id = Column(Integer, primary_key=True)
     category_id = Column(Integer, ForeignKey("categories.id"))
-    title = Column(String(30), nullable=False)
+    title = Column(String(50), nullable=False)
+    en_title = Column(String(50), nullable=False)
     content = Column(MarkdownText, nullable=False)
     post_time = Column(DateTime, nullable=False)
 

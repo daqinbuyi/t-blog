@@ -2,9 +2,9 @@
     <header>
         <div class="icon"></div>
         <time datetime="{{article.post_time.strftime('%b-%d-%y %H:%M:%S')}}">
-          <a href="#">{{article.post_time.strftime('%b-%d-%Y')}}</a>
+          <a href="{{article.en_title}}">{{article.post_time.strftime('%b-%d-%Y')}}</a>
         </time>
-        <h1 class="title"><a href="#">{{article.title}}</a>
+        <h1 class="title"><a href="/post/{{article.en_title}}">{{article.title}}</a>
         </h1>
     </header>
     <div class="entry">
@@ -13,11 +13,13 @@
     <footer class="end-sep">
       {% if show_all %}
         <div class="tags">
-          <a href="/tags/javascript/">javascript</a>, <a href="/tags/closure/">closure</a>
+          {% for tag in article.tags %}
+          <a href="/tag/{{tag.name}}">{{tag.name}}</a>
+          {% end %}
         </div>
       {% else %}
         <div class="alignleft">
-            <a href="#" class="more-link">阅读全文</a>
+            <a href="/post/{{article.en_title}}" class="more-link">阅读全文</a>
         </div>
       {% end %}
         <div class="clearfix"></div>

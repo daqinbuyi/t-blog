@@ -1,10 +1,11 @@
 import tornado.web
 from database import db
 from config import site_options
-from mixin import BaseMixin
+from mixin import BaseMixin, PostMixin
+from model import Tag
 
 
-class BaseHandler(tornado.web.RequestHandler, BaseMixin):
+class BaseHandler(tornado.web.RequestHandler, BaseMixin, PostMixin):
     def initialize(self):
         self.db = db.Session()
 
@@ -13,9 +14,10 @@ class BaseHandler(tornado.web.RequestHandler, BaseMixin):
 
     def render(self, template_name, **kwargs):
         if not self.request.path.startswith("/admin"):
-            kwargs["tags"] = self.get_tags()
+            kwargs["tags"] = self.get_model_list(Tag)
             kwargs["recent_posts"] = self.get_recent_posts()
             kwargs["links"] = [dict(name="test", url="#"), ]
+            template_name = site_options["theme"] + '/' + template_name
         super(BaseHandler, self).render(
             template_name,
             site_options=site_options,
@@ -24,8 +26,3 @@ class BaseHandler(tornado.web.RequestHandler, BaseMixin):
 
     def on_finish(self):
         self.db.close()
-
-    def _get_limit_offset(self, page):
-        offset = (page - 1) * site_options["index_page_size"]
-        limit = site_options["index_page_size"]
-        return limit, offset

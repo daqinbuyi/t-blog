@@ -1,36 +1,47 @@
 from . import BaseHandler
 from tornado.web import authenticated
-from handlermixin import CategoryMixin
+from model import Category
 
 
 class IndexHandler(BaseHandler):
+
     @authenticated
     def get(self):
-        self.render("category.html", categories=self.get_categories())
+        self.render("category.html", categories=self.get_model_list(Category))
 
     @authenticated
     def post(self):
-        self.add_category(self.Category(self.get_argument("name")))
+        self.insert(Category(self.get_argument("name")))
         self.redirect("/admin/categories")
 
 
 class EditHandler(BaseHandler):
+
     @authenticated
     def get(self, category_id):
-        self.render("category_edit.html", category=self.get_category_by_id(int(category_id)))
+        self.render(
+            "category_edit.html",
+            category=self.get_one(Category, dict(id=int(category_id)))
+        )
 
     @authenticated
     def post(self, category_id):
-        self.update_category(category_id, self.get_argument("name"))
+        self.update(
+            Category,
+            dict(name=self.get_argument("name")),
+            dict(id=category_id)
+        )
         self.redirect("/admin/categories")
 
 
 class DeleteHandler(BaseHandler):
+
     @authenticated
-    def get(self, id):
-        self.render("category_delete.html", category=self.get_category_by_id(int(id)))
+    def get(self, category_id):
+        self.render("category_delete.html",
+                    self.get_one(Category, dict(id=int(category_id))))
 
     @authenticated
     def delete(self):
-        self.delete_by_id(int(self.get_argument("id")))
+        self.delete(Category, dict(id=int(self.get_argument("id"))))
         self.redirect("/admin/categories")
