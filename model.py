@@ -2,7 +2,7 @@
 #sqlalchemy imports
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Table
 from sqlalchemy.orm import relationship
-from sqlalchemy.types import TypeDecorator, Text
+from sqlalchemy.types import Text
 
 #local imports
 from database import db
@@ -14,31 +14,20 @@ post_tags = Table(
     Column("post_id", Integer, ForeignKey("posts.id")),
     Column("tag_id", Integer, ForeignKey("tags.id")))
 
-
-class MarkdownText(TypeDecorator):
-    impl = Text
-
-    def process_bind_param(self, value, dialect):
-        if value is not None and isinstance(value, str):
-            return value
-        return None
-
-    def process_result_value(self, value, dialect):
-        if value is None:
-            return value
-        else:
-            return markdown(value)
-
-
 class Post(db.Model):
     __tablename__ = "posts"
 
     id = Column(Integer, primary_key=True)
     category_id = Column(Integer, ForeignKey("categories.id"))
     title = Column(String(50), nullable=False)
-    en_title = Column(String(50), nullable=False)
-    content = Column(MarkdownText, nullable=False)
+    content = Column(Text, nullable=False)
     post_time = Column(DateTime, nullable=False)
+
+    @property
+    def markdown_content(self):
+        return markdown(
+            self.content,
+            extensions=['codehilite(linenums=False)'])
 
     #many to many Post<->Tag
     tags = relationship("Tag", secondary=post_tags)

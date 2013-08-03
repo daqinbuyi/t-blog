@@ -304,7 +304,7 @@ article .entry p,
 article .entry ul,
 article .entry ol,
 article .entry table,
-article .entry pre,
+/*article .entry pre,*/
 article .entry dl {
   margin: 0 0 20px;
 }
@@ -374,7 +374,6 @@ article .entry .caption:before {
 article .entry code,
 article .entry pre {
   font-family: Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal;
-  color: #333;
   font-size: 0.8em;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -383,12 +382,6 @@ article .entry code {
   font-size: 13px;
   padding: 2px 5px;
   margin: 0 2px;
-}
-article .entry pre {
-  color: #f8f8f2;
-}
-article .entry pre code {
-  color: #f8f8f2;
 }
 li article .entry pre {
   margin-left: -60px;
@@ -665,32 +658,32 @@ article footer .tags:before {
     margin: 0 -20px 20px;
   }
 }
-figure.highlight {
+div.codehilite {
   position: relative;
   padding: 10px 20px;
   background: #3a3c42;
   margin: 0 -30px 16px;
 }
 @media screen and (max-width:580px) {
-  figure.highlight {
+  div.codehilite {
     margin: 0 -20px 16px;
     padding: 10px;
   }
 }
-figure.highlight pre {
+div.codehilite pre {
   border: none;
   padding: 0 10px;
   margin: 0;
 }
-figure.highlight table {
+div.codehilite table {
   margin: 0;
   border-spacing: 0;
 }
-figure.highlight td {
+div.codehilite td {
   padding: 0;
   border-bottom: 0;
 }
-figure.highlight .gutter {
+div.codehilite .gutter {
   display: none;
 }
 pre .comment,

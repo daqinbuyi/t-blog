@@ -10,7 +10,7 @@ route = [
     (r"/admin/logout", admin.LogoutHandler),
     (r"/admin/add_post", post.AddHandler),
     (r"/admin/posts", post.ListHandler),
-    (r"/admin/post/edit/([0-9])+", post.EditHandler),
+    (r"/admin/post/edit/([0-9]+)", post.EditHandler),
     (r"/admin/post/delete/([0-9]+)", post.DeleteHandler),
     (r"/admin/categories", category.IndexHandler),
     (r"/admin/tags", tag.IndexHandler),

@@ -25,7 +25,7 @@ class LoginHandler(RequestHandler):
         self.render("login.html", error_msg=error_msg)
 
     def post(self):
-        if self.get_argument("pass", None) == site_options.password:
+        if self.get_argument("pass", None) == site_options["password"]:
             self.set_secure_cookie("status", "Authenticated!")
             self.redirect("/admin")
         else:

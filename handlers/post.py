@@ -1,6 +1,6 @@
 import tornado.web
 from tornado.web import authenticated
-from . import BaseHandler
+from . import BaseHandler, flash_cache
 from mixin import PostMixin
 from model import Post, Tag, Category
 
@@ -18,13 +18,16 @@ class AddHandler(BaseHandler):
         )
 
     @authenticated
+    @flash_cache
     def post(self):
-        my_post = self.Post()
+        my_post = Post()
         my_post.title = self.get_argument("title")
         my_post.content = self.get_argument("content")
         my_post.category_id = int(self.get_argument("category"))
-        for tag_item in self.get_tags_by_ids(self.get_arguments("tags")):
-            my_post.tags.append(tag_item)
+        my_post.tags = self.get_model_list(
+            Tag,
+            **dict(in_=[("id", self.get_arguments("tags"))])
+        )
         my_post.post_time = datetime.now()
         self.insert(my_post)
         self.redirect("/admin/posts")
@@ -42,9 +45,8 @@ class ListHandler(BaseHandler):
 
 class ShowHandler(BaseHandler, PostMixin):
 
-    def get(self, en_title):
-        print en_title
-        article = self.get_one(Post, **dict(en_title=en_title))
+    def get(self, title):
+        article = self.get_one(Post, **dict(title=title))
         if article:
             self.render("post.html", article=article)
         else:
@@ -55,7 +57,8 @@ class EditHandler(BaseHandler):
 
     @authenticated
     def get(self, id):
-        my_post = self.get_one(Post, dict(id=id))
+        print id
+        my_post = self.get_one(Post, **dict(id=id))
         selected_tags = [i.id for i in my_post.tags]
         self.render(
             "post_edit.html",
@@ -66,14 +69,16 @@ class EditHandler(BaseHandler):
         )
 
     @authenticated
+    @flash_cache
     def post(self, post_id):
-        my_post = self.get_one(Post, dict(id=post_id))
+        my_post = self.get_one(Post, **dict(id=post_id))
         my_post.title = self.get_argument("title")
         my_post.content = self.get_argument("content")
         my_post.category_id = int(self.get_argument("category"))
-        my_post.tags = []
-        for tag_item in self.get_tags_by_ids(self.get_arguments("tags")):
-            my_post.tags.append(tag_item)
+        my_post.tags = self.get_model_list(
+            Tag,
+            **dict(in_=[("id", self.get_arguments("tags"))])
+        )
         self.db.commit()
         self.redirect("/admin/posts")
 
@@ -83,9 +88,10 @@ class DeleteHandler(BaseHandler):
     @authenticated
     def get(self, post_id):
         self.render("post_delete.html",
-                    post=self.get_one(Post, "id", "title", dict(id=post_id)))
+                    post=self.get_one(Post, "id", "title", **dict(id=post_id)))
 
     @authenticated
+    @flash_cache
     def post(self, post_id):
         self.delete(Post, dict(id=int(post_id)))
         self.redirect("/admin/posts")
