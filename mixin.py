@@ -30,7 +30,6 @@ class BaseMixin(object):
             rc = rc.offset(kwargs["offset"])
         return rc
 
-
     def get_one(self, T, **kwargs):
         rc = self.db.query(T)
         rc = self._add_filters(T, rc, **kwargs)
@@ -42,7 +41,7 @@ class BaseMixin(object):
     def get_model_list(self, T, *cols, **kwargs):
         if cols:
             query_list = [getattr(T, col)
-                for col in cols if hasattr(T, col)]
+                          for col in cols if hasattr(T, col)]
             rc = self.db.query(*query_list)
         else:
             rc = self.db.query(T)

@@ -20,11 +20,12 @@ settings = dict(
 )
 
 
-class WSGIApplication(tornado.wsgi.WSGIApplication):
+class PaaSApplication(tornado.wsgi.WSGIApplication):
 
     """the main application"""
 
     def __init__(self):
+        db.create_tables()
         self.tags = []
         self.recent_posts = []
         super(WSGIApplication, self).__init__(
@@ -59,8 +60,12 @@ class Application(tornado.web.Application):
 
 
 if "SERVER_SOFTWARE" in os.environ:
-    import sae
-    application = sae.create_wsgi_app(WSGIApplication())
+    try:
+        import sae
+        application = sae.create_wsgi_app(PaaSApplication())
+    except:
+        from bae.core.wsgi import WSGIApplication
+        application = WSGIApplication(PaaSApplication())
 else:
     import tornado.httpserver
     httpserver = tornado.httpserver.HTTPServer(Application())

@@ -57,7 +57,6 @@ class EditHandler(BaseHandler):
 
     @authenticated
     def get(self, id):
-        print id
         my_post = self.get_one(Post, **dict(id=id))
         selected_tags = [i.id for i in my_post.tags]
         self.render(

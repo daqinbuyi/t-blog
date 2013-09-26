@@ -14,6 +14,7 @@ post_tags = Table(
     Column("post_id", Integer, ForeignKey("posts.id")),
     Column("tag_id", Integer, ForeignKey("tags.id")))
 
+
 class Post(db.Model):
     __tablename__ = "posts"
 
