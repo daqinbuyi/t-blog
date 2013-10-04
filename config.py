@@ -22,7 +22,6 @@ site_options = dict(
 )
 
 #system settings
-DEBUG = True
 COOKIE_SECRET = "justfly"
 
 #bae settings
@@ -34,7 +33,7 @@ if "SERVER_SOFTWARE" in os.environ:
         import sae.const as const
         db_name = const.MYSQL_DB
     except:
-        from base.core import const
+        from bae.core import const
         db_name = BAE_DB_NAME
     DATABASE_URI = "mysql://%s:%s@%s:%s/%s?charset=utf8" % (
         const.MYSQL_USER,
@@ -44,6 +43,8 @@ if "SERVER_SOFTWARE" in os.environ:
         db_name
     )
     DATABASE_ECHO = False
+    DEBUG = False
 else:
     DATABASE_URI = "sqlite:///db/data.db"
     DATABASE_ECHO = True
+    DEBUG = True

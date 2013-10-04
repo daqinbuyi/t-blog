@@ -6,6 +6,7 @@ route = [
     (r"/archive", index.ArchiveHandler),
     (r"/post/([^/]+)", post.ShowHandler),
     (r"/admin", admin.IndexHandler),
+    (r"/admin/remote", post.RemoteHandler),
     (r"/admin/login", admin.LoginHandler),
     (r"/admin/logout", admin.LogoutHandler),
     (r"/admin/add_post", post.AddHandler),

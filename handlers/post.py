@@ -3,8 +3,11 @@ from tornado.web import authenticated
 from . import BaseHandler, flash_cache
 from mixin import PostMixin
 from model import Post, Tag, Category
+from config import site_options
 
 from datetime import datetime
+import hashlib
+from urllib import unquote, quote
 
 
 class AddHandler(BaseHandler):
@@ -44,9 +47,9 @@ class ListHandler(BaseHandler):
 
 
 class ShowHandler(BaseHandler, PostMixin):
-
     def get(self, title):
-        article = self.get_one(Post, **dict(title=title))
+        title = unquote(title.encode('utf-8')).decode('utf-8')
+        article = self.get_one(Post, title=title)
         if article:
             self.render("post.html", article=article)
         else:
@@ -94,3 +97,17 @@ class DeleteHandler(BaseHandler):
     def post(self, post_id):
         self.delete(Post, dict(id=int(post_id)))
         self.redirect("/admin/posts")
+
+
+class RemoteHandler(BaseHandler):
+    def post(self):
+        password = self.get_argument("password", None)
+        md5_password = hashlib.md5(site_options["password"]).hexdigest()
+        if not password or password != md5_password:
+            raise tornado.web.HTTPError(403)
+        category = self.get_argument("category", None)
+        tags = self.get_argument("tags", "").split(",")
+        content = self.get_argument("content", None)
+        print category
+        print tags
+        print content.encode("utf8")
