@@ -1,6 +1,7 @@
 /db/
 *.sublime-project
 *.sublime-workspace
+/tornado/
 /pygments/
 /markdown/
 *.pyc
